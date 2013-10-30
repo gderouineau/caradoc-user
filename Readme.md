@@ -2,52 +2,84 @@
 
 
 
-```js
-var caradoc = require('caradoc');
-var server  = caradoc.server;
-
-server.start();
-```
 
 ## Installation
 
-    $ npm -g install caradoc
-    $ caradoc projectName
+    $ npm  install caradoc-user
+
+## Use
+
+you need to create a entity to inherit from caradoc-user
+and specify the user path in config/security.js
+
+```js
+
+var User = require('caradoc-user').User;
+
+exports.User = function(firstname, lastname, otherMethods) {
+
+    /*
+     * Inherit from user
+     */
+    this.inheritFrom = User;
+    this.inheritFrom();
+
+    /*
+     * adding method firstname
+     * type Varchar(255)
+     */
+    this.firstname = firstname;
+    this.params['firstname'] = {
+        type : 'VARCHAR(255)'
+    };
+
+    /*
+     * adding method lastname
+     * type Varchar(255)
+     */
+    this.lastname = lastname;
+    this.params['lastname'] = {
+        type : 'VARCHAR(255)'
+    };
+
+    /*
+     *
+     *
+     */
+     this.otherMethods = otherMethods;
+     this.params['otherMethods'] = {
+        type : 'INT(11)',
+        default : 'NULL'
+     };
+
+     ....
+};
 
 
-## Quick Start
+// Then in your controller
 
- The quickest way to get started with express is to utilize the executable `express(1)` to generate an application as shown below:
+var entity = require('caradoc-entity');
+var user = new entity.generate('user');
+    user.username = 'username';
+    user.email = 'user@mail.com';
+    ...
+    user.password = 'password';
 
- Create a bundle: // this option is not create at this moment
-
-    $ cd /path/to/your/project
-    $ caradoc newBundle bundleName
-
- Install dependencies:
-
-    $ npm install
-
- Start the server:
-
-    $ node app
-
-## Features
-
-  * Built on [Connect](http://github.com/senchalabs/connect)
-  * create bundle
-  * easy routing managment
-  * Content negotiation
-
-## Philosophy
-
-    Framework to create web application runing on nodejs
-    with minimal knowlegde on this.
-    create bundle configure your routes in config/routes.js
-    and define the actions for those routes in controller file.
-
+    entity.persist(user); // add user to waiting list for insertion
+    entity.flush(); // run the waiting list
 
 ```
+
+
+## Methods
+
+- **id** - id default null auto increment INT(11)
+- **username** - user username default not null VARCHAR(255)
+- **email** - email default not null VARCHAR(255)
+- **password** - user password salted default not null VARCHAR(255)
+- **salt** - user password salt
+- **enabled** - 0 or 1 DEFAULT 1  TINYINT(1)
+- **role** - user role like ROLE_MEMBER ROLE_ADMIN ... DEFAULT ROLER_MEMBER VARCHAR(255)
 
 ## License
 
