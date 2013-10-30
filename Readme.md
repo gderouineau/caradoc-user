@@ -43,7 +43,7 @@ exports.User = function(firstname, lastname, otherMethods) {
     };
 
     /*
-     *
+     * adding other method
      *
      */
      this.otherMethods = otherMethods;
