@@ -1,0 +1,31 @@
+{
+  "name": "caradoc-user",
+  "description": "default user for caradoc framework",
+  "version": "0.1.0",
+  "author": {
+    "name": "guillaume derouineau",
+    "email": "admin@caradoc.fr"
+  },
+
+  "keywords": [
+    "caradoc",
+    "frameword",
+    "web",
+    "api",
+    "router",
+    "security",
+    "app",
+    "router",
+    "server"
+  ],
+  "main": "index",
+  "readmeFilename": "Readme.md",
+  "_id": "caradoc-user@0.1.0",
+  "_from": "caradoc-user@",
+  "homepage": "http://github.com/gderouineau/caradoc-user",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/gderouineau/caradoc-user.git"
+  }
+
+}
